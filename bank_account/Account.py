@@ -1,7 +1,7 @@
 from decimal import Decimal
 
-from bank_account.Exception import InvalidAmountException,InsufficientFundsException,InvalidPinException,AccountNotFoundException
-
+from bank_account.Exception import InvalidAmountException, InsufficientFundsException, InvalidPinException, \
+    AccountNotFoundException
 
 
 class Account:
@@ -33,9 +33,10 @@ class Account:
     def get_account_number(self):
         return self.number
 
-    def withdraw(self, amount,pin):
+    def withdraw(self, amount, pin):
         if amount < 0 & amount > self.balance:
-            if(self.pin)
             raise InsufficientFundsException("Insufficient funds")
-        self.balance -= amount
+        if self.pin not in (pin,):
+            raise InvalidPinException("Invalid pin. Incorrect PIN")
 
+        self.balance -= amount
