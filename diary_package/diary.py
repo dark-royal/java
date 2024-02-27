@@ -19,12 +19,9 @@ class Diary:
     def get_user_name(self):
         return self.user_name
 
-    def is_locked(self):
-        return self.is_locked
-
     def unlock(self, password):
         self.validate_password(password)
-        is_locked = False
+        return False
 
     @staticmethod
     def lock_diary():
@@ -58,3 +55,5 @@ class Diary:
             if entry.get_id() == entry_id:
                 entry._title = title
                 entry._body = body
+
+
