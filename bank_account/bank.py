@@ -3,45 +3,37 @@ from bank_account.Account import Account
 
 class Invalid_account_exception(BaseException):
     def __init__(self, message):
-        super.__init__(message)
+        super().__init__(message)
 
 
 class Bank:
-    def __init__(self, bank_name, accounts: list < Account > Account):
+    def __init__(self, bank_name, account_number):
+        self.account_number = account_number
         self.bank_name = bank_name
-        self.account_number = 1000
-        self.accounts = list()
-
-    def list(self, accounts):
-        return self.accounts
-
-    @staticmethod
-    def get_account(self):
-        return Account
-
-    @staticmethod
-    def generate_account_number(account_number):
-        account_number += 1
-        return account_number
+        self.account_number = 1
+        self.accounts = []
 
     def register_customer(self, first_name: str, second_name: str, pin: str):
-        account_number = self.generate_account_number(self.account_number)
-        account = Account(first_name + '' + second_name, pin, account_number)
-        self.accounts.add(account)
+        account = Account(first_name + '' + second_name, pin, self.account_number)
+        self.account_number += 1
+        self.accounts.append(account)
         return account
 
     def get_number_of_account(self):
-        return self.accounts.size()
+        return len(self.accounts)
 
     def find_account(self, account_number: int):
         for account in self.accounts:
-            if account.get_account() == account_number:
+            if account.get_account_number() == account_number:
                 return account
-            raise Invalid_account_exception("account not found")
+        raise Invalid_account_exception("account not found")
+
+    def get_account(self):
+        return self.account_number
 
     def check_balance(self, pin: str, account_number: int):
         account = self.find_account(account_number)
-        return account.self.get_balance(pin)
+        return account.get_balance(pin)
 
     def deposit(self, amount: int, account_number):
         account = self.find_account(account_number)
@@ -59,4 +51,4 @@ class Bank:
 
     def remove_account(self, account_number: int, pin: str):
         account = self.find_account(account_number)
-        self.accounts.remove(account_number)
+        self.accounts.remove(account)

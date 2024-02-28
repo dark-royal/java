@@ -16,8 +16,12 @@ class Account:
     def get_pin(self):
         return self.pin
 
-    def get_balance(self):
+    def get_balance(self, pin):
+        self.validate_pin(pin)
         return self.balance
+
+    def get_account_number(self):
+        return self.number
 
     def deposit(self, amount):
         if amount <= 0:
@@ -33,9 +37,9 @@ class Account:
 
     def validate_pin(self, pin):
         if self.pin != pin:
-            raise InvalidPinException
+            raise InvalidPinException.InvalidPinException
         pass
 
     def validate_amount(self, amount):
         if amount < 0 or amount > self.balance:
-            raise InsufficientFundsException
+            raise InsufficientFundsException.InsufficientFundsException
