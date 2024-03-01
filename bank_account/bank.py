@@ -1,14 +1,11 @@
 from bank_account.Account import Account
 
-
-class Invalid_account_exception(BaseException):
-    def __init__(self, message):
-        super().__init__(message)
+from bank_account.InvalidAccountException import InvalidAccountException
+from bank_account.InvalidPinException import InvalidPinException
 
 
 class Bank:
-    def __init__(self, bank_name, account_number):
-        self.account_number = account_number
+    def __init__(self, bank_name):
         self.bank_name = bank_name
         self.account_number = 1
         self.accounts = []
@@ -24,9 +21,10 @@ class Bank:
 
     def find_account(self, account_number: int):
         for account in self.accounts:
+            print(account.get_account_number())
             if account.get_account_number() == account_number:
                 return account
-        raise Invalid_account_exception("account not found")
+        raise InvalidAccountException
 
     def get_account(self):
         return self.account_number
@@ -51,4 +49,6 @@ class Bank:
 
     def remove_account(self, account_number: int, pin: str):
         account = self.find_account(account_number)
+        if account.pin != pin:
+            raise InvalidPinException
         self.accounts.remove(account)

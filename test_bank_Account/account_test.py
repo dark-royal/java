@@ -1,6 +1,8 @@
 import unittest
 
 from bank_account.Account import Account
+from bank_account.InvalidAmountException import InvalidAmountException
+from bank_account.InvalidPinException import InvalidPinException
 
 
 class MyTestCase(unittest.TestCase):
