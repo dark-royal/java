@@ -1,3 +1,5 @@
+
+
 def first_display(number):
     if number[0] == '1':
         return '& & & & &'
@@ -70,4 +72,4 @@ def print_out(number):
     print(display(number))
 
 
-print_out('11100001')
+print_out('00111001')

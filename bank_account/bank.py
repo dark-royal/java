@@ -19,12 +19,11 @@ class Bank:
     def get_number_of_account(self):
         return len(self.accounts)
 
-    def find_account(self, account_number: int):
+    def find_account(self, account_number: int) -> Account:
         for account in self.accounts:
-            print(account.get_account_number())
             if account.get_account_number() == account_number:
                 return account
-        raise InvalidAccountException
+        raise InvalidAccountException("Account not found")
 
     def get_account(self):
         return self.account_number
@@ -49,6 +48,5 @@ class Bank:
 
     def remove_account(self, account_number: int, pin: str):
         account = self.find_account(account_number)
-        if account.pin != pin:
-            raise InvalidPinException
+        account.validate_pin(pin)
         self.accounts.remove(account)

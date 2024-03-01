@@ -1,8 +1,10 @@
-from bank_account import InsufficientFundsException, InvalidAmountException, InvalidPinException
+# from bank_account import InsufficientFundsException, InvalidPinException
+from bank_account.InsufficientFundsException import InsufficientFundsException
+from bank_account.InvalidAmountException import InvalidAmountException
+from bank_account.InvalidPinException import InvalidPinException
 
 
 class Account:
-
 
     def __init__(self, name: str, pin: str, number: int):
         self.name = name
@@ -19,9 +21,8 @@ class Account:
 
     def deposit(self, amount):
         if amount <= 0:
-            raise InvalidAmountException
+            raise InvalidAmountException("Invalid Amount...")
         self.balance += amount
-        pass
 
     def withdraw(self, amount, pin):
         self.validate_amount(amount)
@@ -31,9 +32,10 @@ class Account:
 
     def validate_pin(self, pin):
         if self.pin != pin:
-            raise InvalidPinException.InvalidPinException
+            raise InvalidPinException("Invalid pin....")
         return pin
 
     def validate_amount(self, amount):
         if amount < 0 or amount > self.balance:
-            raise InsufficientFundsException.InsufficientFundsException
+            raise InsufficientFundsException("insufficient funds...")
+

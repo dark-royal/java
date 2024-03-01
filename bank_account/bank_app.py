@@ -1,9 +1,5 @@
 import sys
 
-from bank_account import bank
-from bank_account.InvalidAmountException import InvalidAmountException
-from bank_account.InvalidPinException import InvalidPinException
-from bank_account.InvalidAccountException import InvalidAccountException
 from bank_account.bank import Bank
 
 
@@ -12,17 +8,17 @@ class bank_app:
 
     def main_menu(self):
         print("""
-              <><><>Welcome to your bank app<>
-            <><><><><><><><><><><><><><><><><>
+        <><><><><><><>Welcome to your bank app<><><><><><><>
+        <><><><><><><><><><><><><><><><><><><><><><><><><><>
             Here are set of things you would like to do
                     1:create bank account
-                    2:Deposit amount
-                    3:Withdraw amount
-                    4:Transfer amount
-                    5:Remove account
+                    2:Deposit 
+                    3:Withdraw 
+                    4:Transfer 
+                    5:Remove 
                     6:Check balance
                     7:exit program    
-            <><><><><><><><><<><><><><><><><><>       
+        <><><><><><><><><><><><><><><<><><><><><><><><><><><>       
         """)
         self.option()
 
@@ -55,19 +51,17 @@ class bank_app:
         pin = input("Enter pin")
         account = self.bank.register_customer(first_name, second_name, pin)
         print("<><><><><><>Account created successfully<><><><><><><>")
+        print(f"your account number is {account.get_account_number()}")
         self.main_menu()
 
     def deposit(self):
         try:
             account_number = int(input("Enter account number"))
             amount = int(input("Enter amount"))
-            account = self.bank.deposit(amount, account_number)
-            print(f"<><><><>{amount} is deposited to {account_number} <><><><><><")
-        except InvalidAccountException as error:
-            print({error})
-
-        except InvalidAmountException as error:
-            print({error})
+            self.bank.deposit(amount, account_number)
+            print(f"<><><><>{amount} is deposited to account number{account_number} <><><><><><")
+        except Exception as error:
+            print(error)
 
         finally:
             self.main_menu()
@@ -78,15 +72,9 @@ class bank_app:
             amount = int(input("Enter amount"))
             pin = input("Enter pin")
             account = self.bank.withdraw(account_number, amount, pin)
-            print(f"<><><><>{amount} is withdrawn  from  {account_number} <><><><><><")
-        except InvalidAccountException as error:
-            print({error})
-
-        except InvalidAmountException as error:
-            print({error})
-
-        except InvalidPinException as error:
-            print({error})
+            print(f"<><><><>{amount} is withdrawn  from account number {account_number} <><><><><><")
+        except Exception as error:
+            print(error)
 
         finally:
             self.main_menu()
@@ -99,29 +87,21 @@ class bank_app:
             pin = input("Enter pin")
             account = self.bank.transfer(amount, receiver_account_number, sender_account_number, pin)
             print(
-                f"<><><><>{amount} is deposited to {sender_account_number} <><><><><>{amount} is transferred to {sender_account_number} ")
-        except InvalidAmountException as error:
-            print({error})
-
-        except InvalidAccountException as error:
-            print({error})
-
-        except InvalidPinException as error:
-            print({error})
+                f"<><><><>{amount} is transferred from account number {sender_account_number} to account number {receiver_account_number} ")
+        except BaseException as error:
+            print(error)
 
         finally:
             self.main_menu()
 
     def remove_account(self):
         try:
-            account_number = int(input("Enter pin"))
+            account_number = int(input("Enter account number"))
             pin = input("Enter pin")
             account = self.bank.remove_account(account_number, pin)
-            print(f"<><><><>{account_number} is removed from list of account<><><><><><>")
-        except InvalidAccountException as error:
-            print({error})
-        except InvalidPinException as error:
-            print({error})
+            print(f"<><><><>account number{account_number} is removed from list of account<><><><><><>")
+        except Exception as error:
+            print(error)
 
         finally:
             self.main_menu()
@@ -131,11 +111,10 @@ class bank_app:
             account_number = int(input("Enter account number"))
             pin = input("Enter pin")
             account = self.bank.check_balance(pin, account_number)
-            print(f"<><><><>{account_number} balance is  {account} <><><><><><")
-        except InvalidAccountException as error:
-            print({error})
-        except InvalidPinException as error:
-            print({error})
+            print(f"<><><><>account number {account_number} balance is  {account} <><><><><><")
+        except Exception as error:
+            print(error)
+
         finally:
             self.main_menu()
 
