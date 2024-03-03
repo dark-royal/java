@@ -8,9 +8,9 @@ class Entry:
         self.body = body
         self.date_time_created = datetime.date.today()
 
-    @property
-    def entry_id(self):
-        return self.entry_id
+    # @property
+    # def entry_id(self):
+    #     return self.entry_id
 
     @property
     def title(self):
@@ -24,9 +24,9 @@ class Entry:
     def body(self):
         return self.body
 
-    @entry_id.setter
-    def entry_id(self, value):
-        self._entry_id = value
+    # @entry_id.setter
+    # def entry_id(self, value):
+    #     self._entry_id = value
 
     @title.setter
     def title(self, title):
@@ -37,8 +37,7 @@ class Entry:
         self._body = body
 
     def __repr__(self):
-        return f'entry id:{self._entry_id}\nbody: {self._title}\n' \
-               f'Nin: {self._body}'
+        return f'entry id:{self.entry_id}\nbody: {self._title}\n'
 
     @date_time_created.setter
     def date_time_created(self, value):
