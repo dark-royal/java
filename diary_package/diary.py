@@ -1,5 +1,7 @@
 from diary_package.diary_is_locked_exception import DiaryIsLockedException
 from diary_package.entry import Entry
+from diary_package.id_not_found_exception import IdNotFoundException
+from diary_package.invalid_id_exception import InvalidIdException
 from diary_package.invalid_pin_exception import InvalidPinException
 
 
@@ -25,7 +27,7 @@ class Diary:
     def create_entry(self, title: str, body: str, entry_id):
         if not self.is_locked:
             entry = Entry(entry_id, title, body)
-            entry_id += 1
+            # entry_id += 1
             self.entries.append(entry)
             return entry
         else:
@@ -33,8 +35,9 @@ class Diary:
 
     def find_entry_by_id(self, entry_id) -> Entry:
         for entry in self.entries:
-            if entry.entry_id == entry_id:
+            if entry.get_entry_id() == entry_id:
                 return entry
+        raise InvalidIdException("Id not found")
 
     def delete_entry(self, entry_id):
         self.entries.remove(self.find_entry_by_id(entry_id))
@@ -45,6 +48,9 @@ class Diary:
 
     def update_entry(self, entry_id: int, title: str, body: str):
         for entry in self.entries:
-            if entry.get_id() == entry_id:
-                entry._title = title
-                entry._body = body
+            if entry.get_entry_id() == entry_id:
+                entry.title = title
+                entry.body = body
+            raise IdNotFoundException("id not found")
+
+

@@ -8,9 +8,11 @@ class Entry:
         self.body = body
         self.date_time_created = datetime.date.today()
 
-    # @property
-    # def entry_id(self):
-    #     return self.entry_id
+    def get_entry_id(self):
+        return self.entry_id
+
+    def set_entry_id(self, value):
+        self.entry_id = value
 
     @property
     def title(self):
@@ -42,5 +44,3 @@ class Entry:
     @date_time_created.setter
     def date_time_created(self, value):
         self._date_time_created = value
-
-
