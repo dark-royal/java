@@ -2,6 +2,7 @@
 from bank_account.InsufficientFundsException import InsufficientFundsException
 from bank_account.InvalidAmountException import InvalidAmountException
 from bank_account.InvalidPinException import InvalidPinException
+from bank_account.invalid_name_exception import InvalidNameException
 
 
 class Account:
@@ -34,6 +35,11 @@ class Account:
         if self.pin != pin:
             raise InvalidPinException("Invalid pin....")
         return pin
+
+    def validate_name(self):
+        if not self.name:
+            raise InvalidNameException("Name is not added")
+        return self.name
 
     def validate_amount(self, amount):
         if amount < 0 or amount > self.balance:

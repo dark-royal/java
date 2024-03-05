@@ -4,12 +4,14 @@ from diary_package.diary import Diary
 
 
 class MainApplication:
-    diary = Diary("username", "password")
+    username = input("Enter your username")
+    password = input("Enter your password")
+    diary = Diary(username,password)
 
     def main_menu(self):
         print("""
-                Welcome to Dark Royal diary
-                <><><><><><><><><><><><><><><><><><><><><><>
+                😍😍😍😍😍😍Welcome to Dark Royal diary😍😍😍😍😍😍
+                😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍
                 Enter 1.lock diary
                 Enter 2. unlock diary
                 Enter 3. create entry
@@ -17,7 +19,7 @@ class MainApplication:
                 Enter 5. update entry
                 Enter 6. delete entry
                 Enter 7. exit diary  
-                <><><><><><><><><><><><><><><><><><><><><><>
+                😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍😍1
         """)
         self.option()
 
@@ -37,6 +39,8 @@ class MainApplication:
             self.delete_entry()
         elif option == '7':
             self.exit_diary()
+        else:
+            self.main_menu()
 
     def lock_diary(self):
         self.diary.lock_diary()
@@ -58,10 +62,10 @@ class MainApplication:
         try:
             title = input("Enter your desirable title")
             body = input("Enter your desirable body")
-            entry_id = int(input("Enter your id"))
-            self.diary.create_entry(title, body, entry_id)
+            self.diary.create_entry(title, body)
             print("<><><><><><><>diary is created successfully<><><><><><><>")
-            print(f"{title}\n {body}")
+            print(f"your id is {self.diary.generate_id()} ")
+            print(f"😍😍😍😍😍😍{title}😍😍😍😍😍😍\n {body}")
         except BaseException as error:
             print(error)
         finally:
@@ -83,7 +87,7 @@ class MainApplication:
             new_title = input("Enter new title")
             new_body = input("Enter new body")
             self.diary.update_entry(entry_id,new_title,new_body)
-            print(f"{new_title}\n {new_body}")
+            print(f"😍😍😍😍😍😍{new_title}😍😍😍😍😍😍\n {new_body}")
             print("Diary have been updated")
         except BaseException as error:
             print(error)

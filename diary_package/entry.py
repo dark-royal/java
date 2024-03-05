@@ -3,28 +3,25 @@ import datetime
 
 class Entry:
     def __init__(self, entry_id: int, title: str, body: str):
-        self.entry_id = entry_id
-        self.title = title
-        self.body = body
-        self.date_time_created = datetime.date.today()
+        self._entry_id = entry_id
+        self._title = title
+        self._body = body
+        self._date_time_created = datetime.date.today()
 
     def get_entry_id(self):
-        return self.entry_id
-
-    def set_entry_id(self, value):
-        self.entry_id = value
+        return self._entry_id
 
     @property
     def title(self):
-        return self.title
+        return self._title
 
     @property
     def date_time_created(self):
-        return self.date_time_created
+        return self._date_time_created
 
     @property
     def body(self):
-        return self.body
+        return self._body
 
     # @entry_id.setter
     # def entry_id(self, value):
@@ -39,7 +36,7 @@ class Entry:
         self._body = body
 
     def __repr__(self):
-        return f'entry id:{self.entry_id}\nbody: {self._title}\n'
+        return f'entry id:{self._entry_id}\nbody: {self._title}\n'
 
     @date_time_created.setter
     def date_time_created(self, value):

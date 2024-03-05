@@ -7,6 +7,7 @@ from diary_package.invalid_pin_exception import InvalidPinException
 
 class Diary:
     def __init__(self, user_name: str, password: str):
+        self.entry_id = 0
         self.user_name = user_name
         self.password = password
         self.entries = []
@@ -24,9 +25,10 @@ class Diary:
         else:
             raise InvalidPinException("incorrect password")
 
-    def create_entry(self, title: str, body: str, entry_id):
+    def create_entry(self, title: str, body: str):
+        diary = self.generate_id()
         if not self.is_locked:
-            entry = Entry(entry_id, title, body)
+            entry = Entry(self.entry_id, title, body)
             # entry_id += 1
             self.entries.append(entry)
             return entry
@@ -40,8 +42,8 @@ class Diary:
         raise InvalidIdException("Id not found")
 
     def delete_entry(self, entry_id):
-        self.entries.remove(self.find_entry_by_id(entry_id))
-        len(self.entries) - 1
+        entry = self.find_entry_by_id(entry_id)
+        self.entries.remove(entry)
 
     def get_number_of_entry(self):
         return len(self.entries)
@@ -49,8 +51,13 @@ class Diary:
     def update_entry(self, entry_id: int, title: str, body: str):
         for entry in self.entries:
             if entry.get_entry_id() == entry_id:
-                entry.title = title
-                entry.body = body
-            raise IdNotFoundException("id not found")
+                entry._title = title
+                entry._body = body
+            else:
+                raise IdNotFoundException("id not found")
+
+    def generate_id(self):
+        self.entry_id += 1
+        return self.entry_id
 
 
