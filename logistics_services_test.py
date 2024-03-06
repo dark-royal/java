@@ -16,3 +16,5 @@ class TestLogisticsServices(TestCase):
 
     def test_collection_rate_is_greater_than_or_equals_to_70(self):
         self.assertEqual(44000,logistics_services.services(78))
+
+
