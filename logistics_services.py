@@ -1,8 +1,6 @@
 def services(number_of_successful_delivery):
     base_pay = 5000
     wages_per_day = 0
-    if 0 > number_of_successful_delivery > 100:
-        raise ValueError("Invalid number of successful delivery")
     if 0 < number_of_successful_delivery < 50:
         amount_per_parcel = 160
         wages_per_day = number_of_successful_delivery * amount_per_parcel + base_pay
@@ -17,4 +15,6 @@ def services(number_of_successful_delivery):
     elif number_of_successful_delivery >= 70:
         amount_per_parcel = 500
         wages_per_day = number_of_successful_delivery * amount_per_parcel + base_pay
+    if 0 > number_of_successful_delivery > 100:
+        raise ValueError("Invalid number of successful delivery")
     return wages_per_day
