@@ -1,0 +1,2 @@
+class NoSuchDiaryExistException(BaseException):
+    pass

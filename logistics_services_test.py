@@ -24,4 +24,4 @@ class TestLogisticsServices(TestCase):
     def test_number_of_successful_delivery_cannot_be_more_than_100(self):
         with self.assertRaises(ValueError):
             logistics_services.services(100)
-
+1
