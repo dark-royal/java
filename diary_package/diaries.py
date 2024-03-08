@@ -1,7 +1,7 @@
 from diary_package.no_diary_is_found_exception import NoSuchDiaryExistException
 
 
-class Diary:
+class Diaries:
     def __init__(self):
         self.diaries = []
 
