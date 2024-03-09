@@ -1,3 +1,4 @@
+from diary_package.diary import Diary
 from diary_package.no_diary_is_found_exception import NoSuchDiaryExistException
 
 
@@ -6,7 +7,7 @@ class Diaries:
         self.diaries = []
 
     def add_diary(self, user_name, password):
-        diary = Diary()
+        diary = Diary(user_name,password)
         self.diaries.append(diary)
         return diary
 
@@ -21,10 +22,8 @@ class Diaries:
 
     def delete_diary(self,user_name,password):
         found_diary = self.find_by_user_name(user_name)
-        if found_diary.get_user_name() == user_name & found_diary.get_password() == password:
-
+        if found_diary.get_user_name() == user_name and found_diary.get_password() == password:
             self.diaries.remove(found_diary)
-        raise NoSuchDiaryExistException("No diary exist")
-
+        #raise NoSuchDiaryExistException("No diary exist")
 
 

@@ -15,6 +15,8 @@ class Diary:
 
     def get_user_name(self):
         return self.user_name
+    def get_password(self):
+        return self.password
 
     def lock_diary(self):
         self.is_locked = True
