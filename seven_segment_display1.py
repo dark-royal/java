@@ -1,5 +1,4 @@
 
-
 def first_display(number):
     if number[0] == '1':
         return '& & & & &'
